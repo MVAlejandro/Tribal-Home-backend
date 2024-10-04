@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tribalHome
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tribalHome
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `tribalHome` DEFAULT CHARACTER SET utf8 ;
+USE `tribalHome` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`usuario`
+-- Table `tribalHome`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
+CREATE TABLE IF NOT EXISTS `tribalHome`.`usuario` (
   `id_usuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `apellidos` VARCHAR(100) NOT NULL,
@@ -35,9 +35,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`producto`
+-- Table `tribalHome`.`producto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`producto` (
+CREATE TABLE IF NOT EXISTS `tribalHome`.`producto` (
   `id_producto` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre_producto` VARCHAR(100) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -51,9 +51,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`carrito`
+-- Table `tribalHome`.`carrito`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`carrito` (
+CREATE TABLE IF NOT EXISTS `tribalHome`.`carrito` (
   `id_carrito` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `usuario_id_usuario` INT UNSIGNED NOT NULL,
   `producto_id_producto` INT UNSIGNED NOT NULL,
