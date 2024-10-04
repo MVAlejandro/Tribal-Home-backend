@@ -5,7 +5,7 @@ INSERT INTO usuario VALUES (null, 'Jose Alberto', 'Rivera Lara', 'México', '552
 	(null, 'Alejandro', 'Martínez Vargas', 'México', '56100', 'Cerrada 16 de Septiembre', '5611477897', 'alejandromv.2212@gmail.com', 'Contrasenia2.', 'admin'),
 	(null, 'Kristopher', 'Jaramillo Vega', 'México', '56585', 'Chabacano Mz. 34', '5611706572', 'kristopher12@gmail.com', 'Contrasenia3?', 'admin'),
 	(null, 'Dafne Paola', 'Sandoval Sánchez', 'México', '54740', 'Atlanta 28', '5536465968', 'dafne25@gmail.com', 'Contrasenia4$', 'admin'),
-	(null, 'Fernando', 'Ramírez Sánchez', 'México', '55280', 'Valle de Tormes', '5539912382', 'soler3258@gmail.com', 'Contrasenia5...', 'admin'),
+	(null, 'Fernando', 'Ramírez Sánchez', 'México', '55280', 'Valle de Tormes', '5539912382', 'soler3258@gmail.com', 'Contrasenia5...', 'cliente'),
 	(null, 'Luis Fernando', 'Cruz Coronel', 'Ciudad de México', '09850', 'Santa Martha 8', '5631515692', 'fernando.coronel.dev@gmail.com', 'Nomelase24++', 'admin'),
 	(null, 'Iván', 'Orozco Hernández', 'México', '55270', 'Adolfo Lopéz Mateos 33', '5512479260', 'ivanorozcohdez1@gmail.com', 'ElKrisamaaFer<3', 'admin'),
 	(null, 'Ricardo Adrian', 'Alfaro Garcia', 'México', '52282', 'Santa Matilde Mz. 19 Lt. 27', '7222605510', '7222605510@gmail.com', 'TribalHome#_#5', 'admin'),
