@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.tribalHome.dto.EditPassword;
+//import org.tribalHome.dto.EditUser;
 import org.tribalHome.model.Usuario;
 import org.tribalHome.model.Usuario.Rol;
 import org.springframework.stereotype.Service;
@@ -55,14 +56,12 @@ public class UsuarioService {
         Usuario usuario = getUsuario(usuarioId); // Buscamos al usuario por ID
         if (usuario != null) {
             // Actualizamos los datos del usuario
-            usuario.setNombre(usuarioActualizado.getNombre());
-            usuario.setApellidos(usuarioActualizado.getApellidos());
-            usuario.setCorreo(usuarioActualizado.getCorreo());
-            usuario.setDireccion(usuarioActualizado.getDireccion());
-            usuario.setEstado(usuarioActualizado.getEstado());
-            usuario.setCodigo_postal(usuarioActualizado.getCodigo_postal());
-            usuario.setTelefono(usuarioActualizado.getTelefono());
-            usuario.setRol(usuarioActualizado.getRol());
+        	if(usuarioActualizado.getNombre() != null) usuario.setNombre(usuarioActualizado.getNombre());
+        	if(usuarioActualizado.getApellidos() != null) usuario.setApellidos(usuarioActualizado.getApellidos());
+        	if(usuarioActualizado.getDireccion() != null) usuario.setDireccion(usuarioActualizado.getDireccion());
+        	if(usuarioActualizado.getEstado() != null) usuario.setEstado(usuarioActualizado.getEstado());
+        	if(usuarioActualizado.getCodigo_postal() != null) usuario.setCodigo_postal(usuarioActualizado.getCodigo_postal());
+        	if(usuarioActualizado.getTelefono() != null) usuario.setTelefono(usuarioActualizado.getTelefono());
         }
         return usuario; // Devolvemos el usuario actualizado (o null si no existía)
     }
@@ -81,4 +80,26 @@ public class UsuarioService {
         }
         throw new IllegalArgumentException("Usuario no encontrado.");
     }
+    
+    // Prueba pendiente
+//    // 	Método para editar a un usuario
+//	public Usuario editUser(int usuarioId, EditUser editUser) {
+//		Usuario usuario = getUsuario(usuarioId); // Buscamos al usuario por ID
+//        if (usuario != null) {
+//            // Verificamos si la contraseña actual coincide
+//            if (usuario.getContrasenia().equals(editUser.getCurrentPassword())) {
+//                usuario.setContrasenia(editUser.getNewPassword()); // Actualizamos la contraseña
+//                if(editUser.getNombre() != null) usuario.setNombre(editUser.getNombre());
+//                if(editUser.getApellidos() != null) usuario.setApellidos(editUser.getApellidos());
+//                if(editUser.getCodigo_postal() != null) usuario.setCodigo_postal(editUser.getCodigo_postal());
+//                if(editUser.getDireccion() != null) usuario.setDireccion(editUser.getDireccion());
+//                if(editUser.getEstado() != null) usuario.setEstado(editUser.getEstado());
+//                if(editUser.getTelefono() != null) usuario.setTelefono(editUser.getTelefono());
+//                return usuario; // Devolvemos el usuario actualizado
+//            } else {
+//                throw new IllegalArgumentException("La contraseña actual no es correcta.");
+//            }
+//        }
+//        throw new IllegalArgumentException("Usuario no encontrado.");
+//	}
 }

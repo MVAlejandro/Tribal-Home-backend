@@ -14,11 +14,11 @@ public class ProductoService {
     // Constructor que pre-pobla la lista de productos
     public ProductoService() {
         // Predefinimos los productos con datos simulados
-        productos.add(new Producto(1, "Enfriador de vino", "Elegante enfriador de mármol ideal para mantener la temperatura de tu botella de vino.", 450.00, "Decoración", "./assets/muebles/deco-1.png", 1000));
-        productos.add(new Producto(2, "Armario de madera tradicional", "Armario de madera práctico y versátil, se adapta a diversas necesidades de almacenamiento con un diseño clásico.", 6000.00, "Muebles", "./assets/muebles/mueble-8.png", 10));
-        productos.add(new Producto(3, "Cesto de yute trenzado", "Cesto hecho a mano en yute con dos asas superiores.", 600.00, "Almacenamiento", "./assets/muebles/deco-7.png", 25));
-        productos.add(new Producto(4, "Funda de cojín en mezcla de lino", "Funda de cojín clásica en tejido de lino y algodón color verde.", 249.00, "Decoración", "./assets/muebles/image-1.png", 5));
-        productos.add(new Producto(5, "Aparador multiusos nórdico", "Aparador moderno estilo nórdico con amplios espacios de almacenamiento y se adapta a cualquier decoración con sus tonos blancos y café.", 2500.00, "Muebles", "./assets/muebles/mueble-2.png", 500));
+        productos.add(new Producto("Enfriador de vino", "Elegante enfriador de mármol ideal para mantener la temperatura de tu botella de vino.", 450.00, "Decoración", "./assets/muebles/deco-1.png", 1000));
+        productos.add(new Producto("Armario de madera tradicional", "Armario de madera práctico y versátil, se adapta a diversas necesidades de almacenamiento con un diseño clásico.", 6000.00, "Muebles", "./assets/muebles/mueble-8.png", 10));
+        productos.add(new Producto("Cesto de yute trenzado", "Cesto hecho a mano en yute con dos asas superiores.", 600.00, "Almacenamiento", "./assets/muebles/deco-7.png", 25));
+        productos.add(new Producto("Funda de cojín en mezcla de lino", "Funda de cojín clásica en tejido de lino y algodón color verde.", 249.00, "Decoración", "./assets/muebles/image-1.png", 5));
+        productos.add(new Producto("Aparador multiusos nórdico", "Aparador moderno estilo nórdico con amplios espacios de almacenamiento y se adapta a cualquier decoración con sus tonos blancos y café.", 2500.00, "Muebles", "./assets/muebles/mueble-2.png", 500));
     }
 
     // Método para obtener todos los productos
@@ -51,12 +51,12 @@ public class ProductoService {
         Producto producto = getProducto(id_producto); // Buscar el producto por ID
         if (producto != null) {
             // Actualizamos los detalles del producto
-            producto.setNombre_producto(productoActualizado.getNombre_producto());
-            producto.setDescripcion(productoActualizado.getDescripcion());
-            producto.setPrecio(productoActualizado.getPrecio());
-            producto.setCategoria(productoActualizado.getCategoria());
-            producto.setImagen(productoActualizado.getImagen());
-            producto.setStock(productoActualizado.getStock());
+        	if(productoActualizado.getNombre_producto() != null) producto.setNombre_producto(productoActualizado.getNombre_producto());
+        	if(productoActualizado.getDescripcion() != null) producto.setDescripcion(productoActualizado.getDescripcion());
+        	if(productoActualizado.getPrecio() > 0) producto.setPrecio(productoActualizado.getPrecio());
+        	if(productoActualizado.getCategoria() != null) producto.setCategoria(productoActualizado.getCategoria());
+        	if(productoActualizado.getImagen() != null) producto.setImagen(productoActualizado.getImagen());
+        	if(productoActualizado.getStock() > 0) producto.setStock(productoActualizado.getStock());
         }
         return producto; // Devolver el producto actualizado
     }

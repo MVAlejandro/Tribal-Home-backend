@@ -3,6 +3,7 @@ package org.tribalHome.controller;
 import java.util.List;
 
 import org.tribalHome.dto.EditPassword;
+//import org.tribalHome.dto.EditUser;
 import org.tribalHome.model.Usuario;
 import org.tribalHome.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,12 @@ public class UsuarioController {
                                   @RequestBody EditPassword editPassword) {
         return usuarioService.changePassword(usuarioId, editPassword);
     }
+    
+    // Prueba pendiente 
+//    // Cambiar la contraseña del usuario
+//    @PutMapping(path = "{usuarioId}/edit-user")
+//    public Usuario editUser(@PathVariable("usuarioId") int usuarioId,  // Cambiado a int
+//                                  @RequestBody EditUser editUser) {
+//        return usuarioService.editUser(usuarioId, editUser);
+//    }
 }

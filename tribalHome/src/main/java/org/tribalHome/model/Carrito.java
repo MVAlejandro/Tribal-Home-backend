@@ -1,7 +1,9 @@
 package org.tribalHome.model;
 
 public class Carrito {
-
+	
+	private static int totalCarritos = 0; // Contador estático para autoincrementar el ID
+	
     private int id_carrito;
     private int cantidad;
     private double precio_total;
@@ -11,11 +13,12 @@ public class Carrito {
 
     // Constructor vacío
     public Carrito() {
+    	this.id_carrito = ++totalCarritos;
     }
 
     // Constructor con parámetros
-    public Carrito(int id_carrito, int cantidad, double precio_total, String estado, int usuario_id_usuario, int producto_id_producto) {
-        this.id_carrito = id_carrito;
+    public Carrito(int cantidad, double precio_total, String estado, int usuario_id_usuario, int producto_id_producto) {
+    	this(); // Llama al constructor vacío para asignar el ID autoincrementable  
         this.cantidad = cantidad;
         this.precio_total = precio_total;
         this.estado = estado;

@@ -1,7 +1,8 @@
 package org.tribalHome.dto;
 
 public class EditPassword {
-    private String currentPassword; // Contraseña actual
+    
+	private String currentPassword; // Contraseña actual
     private String newPassword; // Nueva contraseña
 
     // Constructor vacío
