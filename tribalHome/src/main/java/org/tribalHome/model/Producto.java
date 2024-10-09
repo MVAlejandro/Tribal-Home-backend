@@ -1,21 +1,21 @@
 package org.tribalHome.model;
 
-import java.math.BigDecimal;
-
 public class Producto {
 
-    private int id_producto; // ID del producto
+    private int id_producto;
     private String nombre_producto;
     private String descripcion;
-    private BigDecimal precio;
+    private double precio;
     private String categoria;
     private String imagen;
     private int stock;
 
+    // Constructor vacío
     public Producto() {
     }
 
-    public Producto(int id_producto, String nombre_producto, String descripcion, BigDecimal precio, String categoria, String imagen, int stock) {
+    // Constructor con parámetros
+    public Producto(int id_producto, String nombre_producto, String descripcion, double precio, String categoria, String imagen, int stock) {
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
         this.descripcion = descripcion;
@@ -50,11 +50,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -80,11 +80,5 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto [id_producto=" + id_producto + ", nombre_producto=" + nombre_producto + ", descripcion=" + descripcion +
-               ", precio=" + precio + ", categoria=" + categoria + ", imagen=" + imagen + ", stock=" + stock + "]";
     }
 }

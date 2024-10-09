@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/productos/") // http://localhost:8080/api/productos/
+@RequestMapping("/api/productos")
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -18,29 +18,33 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
+    // Obtener todos los productos
     @GetMapping
     public List<Producto> getProductos() {
         return productoService.getAllProductos();
     }
 
-    @GetMapping(path = "{productoId}")
-    public Producto getProducto(@PathVariable("productoId") int productoId) { // Cambiar Long a int
-        return productoService.getProducto(productoId);
+    // Obtener un producto por ID
+    @GetMapping("/{id_producto}")
+    public Producto getProducto(@PathVariable("id_producto") int id_producto) {
+        return productoService.getProducto(id_producto);
     }
 
+    // Crear un nuevo producto
     @PostMapping
     public Producto addProducto(@RequestBody Producto producto) {
         return productoService.addProducto(producto);
     }
 
-    @DeleteMapping(path = "{productoId}")
-    public Producto deleteProducto(@PathVariable("productoId") int productoId) { // Cambiar Long a int
-        return productoService.deleteProducto(productoId);
+    // Actualizar un producto
+    @PutMapping("/{id_producto}")
+    public Producto updateProducto(@PathVariable("id_producto") int id_producto, @RequestBody Producto producto) {
+        return productoService.updateProducto(id_producto, producto);
     }
 
-    @PutMapping(path = "{productoId}")
-    public Producto updateProducto(@RequestBody Producto producto,
-                                   @PathVariable("productoId") int productoId) { // Cambiar Long a int
-        return productoService.updateProducto(productoId, producto);
+    // Eliminar un producto
+    @DeleteMapping("/{id_producto}")
+    public Producto deleteProducto(@PathVariable("id_producto") int id_producto) {
+        return productoService.deleteProducto(id_producto);
     }
 }

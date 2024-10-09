@@ -9,7 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarritoService {
 
-    private List<Carrito> carritos = new ArrayList<>(); // Almacena los carritos en memoria (para pruebas)
+    private List<Carrito> carritos = new ArrayList<>();
+
+    // Constructor que pre-pobla la lista de carritos
+    public CarritoService() {
+        // Predefinimos los carritos con datos simulados
+        carritos.add(new Carrito(1, 2, 900.00, "pendiente", 1, 1));
+        carritos.add(new Carrito(2, 3, 600.00, "pago", 1, 3));
+        carritos.add(new Carrito(3, 5, 2500.00, "pago", 9, 1));
+        carritos.add(new Carrito(4, 2, 18000.00, "pendiente", 9, 3));
+        carritos.add(new Carrito(5, 4, 498.00, "pago", 5, 2));
+    }
 
     // Método para obtener todos los carritos
     public List<Carrito> getAllCarritos() {

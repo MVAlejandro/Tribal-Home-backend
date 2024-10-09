@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/carrito") // URL base para carrito
+@RequestMapping("/api/carrito")
 public class CarritoController {
 
     private final CarritoService carritoService;

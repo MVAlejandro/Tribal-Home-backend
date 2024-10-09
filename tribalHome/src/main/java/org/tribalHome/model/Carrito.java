@@ -2,12 +2,12 @@ package org.tribalHome.model;
 
 public class Carrito {
 
-    private int id_carrito; // ID del carrito
-    private int cantidad; // Cantidad de productos en el carrito
-    private double precio_total; // Precio total del carrito
-    private String estado; // Estado del carrito (PENDIENTE, PROCESADO, etc.)
-    private int usuario_id_usuario; // Relación con el usuario
-    private int producto_id_producto; // Relación con el producto
+    private int id_carrito;
+    private int cantidad;
+    private double precio_total;
+    private String estado;
+    private int usuario_id_usuario;
+    private int producto_id_producto;
 
     // Constructor vacío
     public Carrito() {
