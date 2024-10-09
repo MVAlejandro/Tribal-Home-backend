@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.tribalHome.dto.EditPassword;
 import org.tribalHome.model.Usuario;
+import org.tribalHome.model.Usuario.Rol;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,18 @@ public class UsuarioService {
 
     // Inicializamos una lista para almacenar usuarios
     private List<Usuario> usuarios = new ArrayList<>();
-
+    
+    public UsuarioService() {
+    	usuarios.add(new Usuario("Jose Alberto", "Rivera Lara", "México", "55238", "Abedules Mz.1", "5581872363", "joseariverala12@gmail.com", "Contrasenia1+", Rol.USUARIO));
+    	usuarios.add(new Usuario("Alejandro", "Martínez Vargas", "México", "56100", "Cerrada 16 de Septiembre", "5611477897", "alejandromv.2212@gmail.com", "Contrasenia2", Rol.ADMIN));
+    	usuarios.add(new Usuario("Dafne Paola", "Sandoval Sánchez", "México", "54740", "Atlanta 28", "5536465968", "dafne25@gmail.com", "Contrasenia4$", Rol.ADMIN));
+    	usuarios.add(new Usuario("Fernando", "Ramírez Sánchez", "México", "55280", "Valle de Tormes", "5539912382", "soler3258@gmail.com", "Contrasenia5...", Rol.USUARIO));
+    	usuarios.add(new Usuario("Luis Fernando", "Cruz Coronel", "Ciudad de México", "09850", "Santa Martha 8", "5631515692", "fernando.coronel.dev@gmail.com", "Nomelase24++", Rol.ADMIN));
+    	usuarios.add(new Usuario("Kristopher", "Jaramillo Vega", "México", "56585", "Chabacano Mz. 34", "5611706572", "kristopher12@gmail.com", "Contrasenia3?", Rol.ADMIN));
+    	usuarios.add(new Usuario("Iván", "Orozco Hernández", "México", "55270", "Adolfo Lopéz Mateos 33", "5512479260", "ivanorozcohdez1@gmail.com", "ElKrisamaaFer<3", Rol.ADMIN));
+    	usuarios.add(new Usuario("Ricardo Adrian", "Alfaro Garcia", "México", "52282", "Santa Matilde Mz. 19 Lt. 27", "7222605510", "7222605510@gmail.com", "TribalHome#_#5", Rol.ADMIN));
+    	usuarios.add(new Usuario("Juan Carlos", "Valencia", "Ciudad de México", "5555", "Av Generation México", "5500000000", "elbuenJC@gmail.com", "Parangaricutirimicuaro1+", Rol.USUARIO));	
+    }
     // Método para obtener todos los usuarios
     public List<Usuario> getAllUsuarios() {
         return usuarios; // Devolvemos la lista de usuarios
