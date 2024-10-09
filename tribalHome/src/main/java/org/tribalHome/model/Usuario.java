@@ -5,7 +5,6 @@ public class Usuario {
     private static int totalUsuarios = 0; // Contador estático para autoincrementar el ID
 
     private int id; // Este será el ID que se autoincrementa
-    private int id_usuario; // Otro ID definido manualmente
     private String nombre;
     private String apellidos;
     private String estado;
@@ -26,10 +25,9 @@ public class Usuario {
     }
 
     // Constructor con parámetros (sin incluir id, porque se asigna automáticamente)
-    public Usuario(int id_usuario, String nombre, String apellidos, String estado, String codigo_postal,
+    public Usuario(String nombre, String apellidos, String estado, String codigo_postal,
                    String direccion, String telefono, String correo, String contrasenia, Rol rol) {
-        this(); // Llama al constructor vacío para asignar el ID autoincrementable
-        this.id_usuario = id_usuario;
+        this(); // Llama al constructor vacío para asignar el ID autoincrementable     
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.estado = estado;
@@ -48,14 +46,6 @@ public class Usuario {
     }
 
     // No se provee un setter para id porque queremos que se autoincremente
-
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
 
     public String getNombre() {
         return nombre;
@@ -131,7 +121,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", id_usuario=" + id_usuario + ", nombre=" + nombre + ", apellidos=" + apellidos +
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos +
                ", estado=" + estado + ", codigo_postal=" + codigo_postal + ", direccion=" + direccion + 
                ", telefono=" + telefono + ", correo=" + correo + ", contrasenia=" + contrasenia + ", rol=" + rol + "]";
     }
