@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema tribalHome
+-- Schema tribalhome
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema tribalHome
+-- Schema tribalhome
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `tribalHome` DEFAULT CHARACTER SET utf8 ;
-USE `tribalHome` ;
+CREATE SCHEMA IF NOT EXISTS `tribalhome` DEFAULT CHARACTER SET utf8 ;
+USE `tribalhome` ;
 
 -- -----------------------------------------------------
--- Table `tribalHome`.`usuario`
+-- Table `tribalhome`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tribalHome`.`usuario` (
+CREATE TABLE IF NOT EXISTS `tribalhome`.`usuario` (
   `id_usuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `apellidos` VARCHAR(100) NOT NULL,
@@ -35,25 +35,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tribalHome`.`producto`
+-- Table `tribalhome`.`producto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tribalHome`.`producto` (
+CREATE TABLE IF NOT EXISTS `tribalhome`.`producto` (
   `id_producto` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre_producto` VARCHAR(100) NOT NULL,
   `descripcion` TEXT NOT NULL,
   `precio` DECIMAL(10,2) UNSIGNED NOT NULL,
   `categoria` VARCHAR(100) NOT NULL,
   `imagen` VARCHAR(255) NOT NULL,
-  `stock` INT NOT NULL,
-  PRIMARY KEY (`id_producto`),
-  UNIQUE INDEX `stock_UNIQUE` (`stock` ASC) VISIBLE)
+  `stock` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_producto`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tribalHome`.`carrito`
+-- Table `tribalhome`.`carrito`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tribalHome`.`carrito` (
+CREATE TABLE IF NOT EXISTS `tribalhome`.`carrito` (
   `id_carrito` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `usuario_id_usuario` INT UNSIGNED NOT NULL,
   `producto_id_producto` INT UNSIGNED NOT NULL,
