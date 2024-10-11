@@ -29,6 +29,12 @@ public class CarritoController {
     public Carrito getCarrito(@PathVariable("id_carrito") int id_carrito) {
         return carritoService.getCarrito(id_carrito);
     }
+    
+    // Obtener un carrito por ID de Usuario
+    @GetMapping("usuario/{id_usuario}")
+    public List<Carrito> getCarritoUsuario(@PathVariable("id_usuario") int id_usuario) {
+        return carritoService.getCarritoUsuario(id_usuario);
+    }
 
     // Crear un nuevo carrito
     @PostMapping
@@ -37,13 +43,13 @@ public class CarritoController {
     }
 
     // Actualizar un carrito
-    @PutMapping("/{id_carrito}")
+    @PutMapping("/actualizar/{id_carrito}")
     public Carrito updateCarrito(@PathVariable("id_carrito") int id_carrito, @RequestBody Carrito carrito) {
         return carritoService.updateCarrito(id_carrito, carrito);
     }
 
     // Eliminar un carrito
-    @DeleteMapping("/{id_carrito}")
+    @DeleteMapping("/eliminar/{id_carrito}")
     public Carrito deleteCarrito(@PathVariable("id_carrito") int id_carrito) {
         return carritoService.deleteCarrito(id_carrito);
     }

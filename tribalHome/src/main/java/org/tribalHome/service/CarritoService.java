@@ -1,59 +1,63 @@
 package org.tribalHome.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.tribalHome.model.Carrito;
+import org.tribalHome.repository.CarritoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarritoService {
 
-    private List<Carrito> carritos = new ArrayList<>();
-
-    // Constructor que pre-pobla la lista de carritos
-    public CarritoService() {
-        // Predefinimos los carritos con datos simulados
-        carritos.add(new Carrito(2, 900.00, "pendiente", 1, 1));
-        carritos.add(new Carrito(3, 600.00, "pago", 1, 3));
-        carritos.add(new Carrito(5, 2500.00, "pago", 9, 1));
-        carritos.add(new Carrito(2, 18000.00, "pendiente", 9, 3));
-        carritos.add(new Carrito(4, 498.00, "pago", 5, 2));
+	private final CarritoRepository carritoRepository;
+	
+	@Autowired
+    public CarritoService(CarritoRepository carritoRepository) {
+        this.carritoRepository = carritoRepository;
     }
 
     // Método para obtener todos los carritos
     public List<Carrito> getAllCarritos() {
-        return carritos;
+        return carritoRepository.findAll();
     }
 
     // Método para obtener un carrito por ID
-    public Carrito getCarrito(int id) {
-        return carritos.stream().filter(c -> c.getId_carrito() == id).findFirst().orElse(null);
+    public Carrito getCarrito(Integer id) {
+        return carritoRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("El carrito con el id [" + id + "] no existe"));
+    }
+    
+    // Método para obtener un carrito por ID de Usuario
+    public List<Carrito> getCarritoUsuario(Integer id_usuario) {
+    	return carritoRepository.findByUsuarioId(id_usuario);
     }
 
     // Método para añadir un nuevo carrito
     public Carrito addCarrito(Carrito carrito) {
-        carritos.add(carrito); // Añadir el carrito a la lista
+    	carritoRepository.save(carrito);
         return carrito; // Devolver el carrito añadido
     }
 
     // Método para eliminar un carrito por ID
-    public Carrito deleteCarrito(int id_carrito) {
-        Carrito carrito = getCarrito(id_carrito); // Buscar el carrito
-        if (carrito != null) {
-            carritos.remove(carrito); // Si existe, lo eliminamos
+    public Carrito deleteCarrito(Integer id_carrito) {
+        Carrito carrito = null;
+        if (carritoRepository.existsById(id_carrito)) {
+            carrito = carritoRepository.findById(id_carrito).get(); // Si existe, lo eliminamos
+            carritoRepository.delete(carrito); // Eliminamos el carrito de la DB
         }
         return carrito; // Devolvemos el carrito eliminado o null si no existía
     }
 
     // Método para actualizar un carrito
-    public Carrito updateCarrito(int id_carrito, Carrito carritoActualizado) {
-        Carrito carrito = getCarrito(id_carrito); // Buscar el carrito por ID
-        if (carrito != null) {
+    public Carrito updateCarrito(Integer id_carrito, Carrito carritoActualizado) {
+        Carrito carrito = null; // Buscar el carrito por ID
+        if (carritoRepository.existsById(id_carrito)) {
+        	carrito = carritoRepository.findById(id_carrito).get();
             // Actualizamos los detalles del carrito
-            carrito.setCantidad(carritoActualizado.getCantidad());
-            carrito.setPrecio_total(carritoActualizado.getPrecio_total());
-            carrito.setEstado(carritoActualizado.getEstado());
+        	if(carritoActualizado.getCantidad() != null) carrito.setCantidad(carritoActualizado.getCantidad());
+        	if(carritoActualizado.getPrecio_total() != null) carrito.setPrecio_total(carritoActualizado.getPrecio_total());
+        	if(carritoActualizado.getEstado() != null) carrito.setEstado(carritoActualizado.getEstado());
+        	carritoRepository.save(carrito);
         }
         return carrito; // Devolver el carrito actualizado
     }

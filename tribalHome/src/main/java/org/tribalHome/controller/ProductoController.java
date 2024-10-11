@@ -31,7 +31,7 @@ public class ProductoController {
     }
 
     // Crear un nuevo producto
-    @PostMapping
+    @PostMapping("/agregar")
     public Producto addProducto(@RequestBody Producto producto) {
         return productoService.addProducto(producto);
     }

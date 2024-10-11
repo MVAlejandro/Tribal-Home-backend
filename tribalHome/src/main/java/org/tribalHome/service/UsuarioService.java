@@ -5,6 +5,7 @@ import java.util.Optional;
 
 //import org.tribalHome.dto.EditPassword;
 import org.tribalHome.dto.EditUser;
+import org.tribalHome.dto.Login;
 import org.tribalHome.model.Usuario;
 //import org.tribalHome.model.Usuario.Rol;
 import org.tribalHome.repository.UsuarioRepository;
@@ -101,4 +102,20 @@ public class UsuarioService {
         }
         throw new IllegalArgumentException("Usuario no encontrado.");
 	}
+	
+	// Método para iniciar sesión
+	public Usuario loginUser(Login usuario) {
+		Optional<Usuario> user = usuarioRepository.findByCorreo(usuario.getCorreo()); // Vemos si el correo ya ha sido registrado
+    	if(!user.isEmpty()) {
+    		if (user.get().getContrasenia().equals(usuario.getContrasenia())) {
+    			return user.get();
+    		} else {
+    			System.out.println("Las contraseñas no coinciden.");
+    			return null;
+    		}
+    	}else {
+    		return null; // Devolver nulo
+    	}  
+	}
+	
 }

@@ -2,8 +2,8 @@ package org.tribalHome.controller;
 
 import java.util.List;
 
-import org.tribalHome.dto.EditPassword;
 import org.tribalHome.dto.EditUser;
+import org.tribalHome.dto.Login;
 //import org.tribalHome.dto.EditUser;
 import org.tribalHome.model.Usuario;
 import org.tribalHome.service.UsuarioService;
@@ -34,7 +34,7 @@ public class UsuarioController {
     }
 
     // Añadir un nuevo usuario
-    @PostMapping
+    @PostMapping(path = "/registro")
     public Usuario addUsuario(@RequestBody Usuario usuario) {
         return usuarioService.addUsuario(usuario);
     }
@@ -60,10 +60,17 @@ public class UsuarioController {
 //    }
     
 //     Prueba pendiente 
+    
     // Cambiar la contraseña del usuario
-    @PutMapping(path = "{usuarioId}/edit-user")
+    @PutMapping(path = "{usuarioId}/edit-usuario")
     public Usuario editUser(@PathVariable("usuarioId") Integer usuarioId,  // Cambiado a int
                                   @RequestBody EditUser editUser) {
         return usuarioService.editUser(usuarioId, editUser);
+    }
+    
+    // Obtener un usuario por sus datos de registro
+    @GetMapping(path = "/login")
+    public Usuario loginUser(@RequestBody Login login) {
+    	return usuarioService.loginUser(login);
     }
 }
