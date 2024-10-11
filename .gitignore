@@ -1,1 +1,4 @@
 /.metadata/
+
+# Eclipse files
+*.properties
