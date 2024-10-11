@@ -1,25 +1,39 @@
 package org.tribalHome.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="producto")
 public class Producto {
 	
-	private static int totalProductos = 0; // Contador estático para autoincrementar el ID
-	
-    private int id_producto;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_producto", nullable = false, unique = true)
+    private Integer id_producto;
+	@Column(nullable = false)
     private String nombre_producto;
+	@Column(nullable = false)
     private String descripcion;
-    private double precio;
+	@Column(nullable = false)
+    private Double precio;
+	@Column(nullable = false)
     private String categoria;
+	@Column(nullable = false)
     private String imagen;
-    private int stock;
+	@Column(nullable = false)
+    private Integer stock;
 
     // Constructor vacío
     public Producto() {
-    	this.id_producto = ++totalProductos;
     }
 
     // Constructor con parámetros
-    public Producto(String nombre_producto, String descripcion, double precio, String categoria, String imagen, int stock) {
-    	this(); // Llama al constructor vacío para asignar el ID autoincrementable   
+    public Producto(String nombre_producto, String descripcion, double precio, String categoria, String imagen, int stock) {   
         this.nombre_producto = nombre_producto;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -29,7 +43,7 @@ public class Producto {
     }
 
     // Getters y Setters
-    public int getId_producto() {
+    public Integer getId_producto() {
         return id_producto;
     }
 
@@ -53,7 +67,7 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
@@ -77,7 +91,7 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 

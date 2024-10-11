@@ -3,6 +3,7 @@ package org.tribalHome.controller;
 import java.util.List;
 
 import org.tribalHome.dto.EditPassword;
+import org.tribalHome.dto.EditUser;
 //import org.tribalHome.dto.EditUser;
 import org.tribalHome.model.Usuario;
 import org.tribalHome.service.UsuarioService;
@@ -28,7 +29,7 @@ public class UsuarioController {
 
     // Obtener un usuario específico
     @GetMapping(path = "{usuarioId}")
-    public Usuario getUsuario(@PathVariable("usuarioId") int usuarioId) {  // Cambiado a int
+    public Usuario getUsuario(@PathVariable("usuarioId") Integer usuarioId) {  // Cambiado a int
         return usuarioService.getUsuario(usuarioId);
     }
 
@@ -40,29 +41,29 @@ public class UsuarioController {
 
     // Eliminar un usuario
     @DeleteMapping(path = "{usuarioId}")
-    public Usuario deleteUsuario(@PathVariable("usuarioId") int usuarioId) {  // Cambiado a int
+    public Usuario deleteUsuario(@PathVariable("usuarioId") Integer usuarioId) {  // Cambiado a int
         return usuarioService.deleteUsuario(usuarioId);
     }
 
-    // Actualizar la información de un usuario
-    @PutMapping(path = "{usuarioId}")
-    public Usuario updateUsuario(@RequestBody Usuario usuario,
-                                 @PathVariable("usuarioId") int usuarioId) {  // Cambiado a int
-        return usuarioService.updateUsuario(usuarioId, usuario);
-    }
-
-    // Cambiar la contraseña del usuario
-    @PutMapping(path = "{usuarioId}/change-password")
-    public Usuario changePassword(@PathVariable("usuarioId") int usuarioId,  // Cambiado a int
-                                  @RequestBody EditPassword editPassword) {
-        return usuarioService.changePassword(usuarioId, editPassword);
-    }
-    
-    // Prueba pendiente 
-//    // Cambiar la contraseña del usuario
-//    @PutMapping(path = "{usuarioId}/edit-user")
-//    public Usuario editUser(@PathVariable("usuarioId") int usuarioId,  // Cambiado a int
-//                                  @RequestBody EditUser editUser) {
-//        return usuarioService.editUser(usuarioId, editUser);
+//    // Actualizar la información de un usuario
+//    @PutMapping(path = "{usuarioId}")
+//    public Usuario updateUsuario(@RequestBody Usuario usuario,
+//                                 @PathVariable("usuarioId") int usuarioId) {  // Cambiado a int
+//        return usuarioService.updateUsuario(usuarioId, usuario);
 //    }
+//
+//    // Cambiar la contraseña del usuario
+//    @PutMapping(path = "{usuarioId}/change-password")
+//    public Usuario changePassword(@PathVariable("usuarioId") int usuarioId,  // Cambiado a int
+//                                  @RequestBody EditPassword editPassword) {
+//        return usuarioService.changePassword(usuarioId, editPassword);
+//    }
+    
+//     Prueba pendiente 
+    // Cambiar la contraseña del usuario
+    @PutMapping(path = "{usuarioId}/edit-user")
+    public Usuario editUser(@PathVariable("usuarioId") Integer usuarioId,  // Cambiado a int
+                                  @RequestBody EditUser editUser) {
+        return usuarioService.editUser(usuarioId, editUser);
+    }
 }

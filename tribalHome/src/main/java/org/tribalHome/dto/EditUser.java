@@ -8,41 +8,41 @@ public class EditUser {
     private String codigo_postal;
     private String direccion;
     private String telefono;
-	private String currentContrasenia; // Contraseña actual
-    private String newContrasenia; // Nueva contraseña
+	private String currentPassword; // Contraseña actual
+    private String newPassword; // Nueva contraseña
 
     // Constructor vacío
     public EditUser() {}
 
     // Constructor con parámetros
     public EditUser(String nombre, String apellidos, String estado, String codigo_postal, String direccion,
-			String telefono, String currentContrasenia, String newContrasenia) {
+			String telefono, String currentPassword, String newPassword) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.estado = estado;
 		this.codigo_postal = codigo_postal;
 		this.direccion = direccion;
 		this.telefono = telefono;
-		this.currentContrasenia = currentContrasenia;
-		this.newContrasenia = newContrasenia;
+		this.currentPassword = currentPassword;
+		this.newPassword = newPassword;
 	}
 
 
     // Getters y Setters
     public String getCurrentPassword() {
-        return currentContrasenia;
+        return currentPassword;
     }
 
     public void setCurrentPassword(String currentPassword) {
-        this.currentContrasenia = currentPassword;
+        this.currentPassword = currentPassword;
     }
 
     public String getNewPassword() {
-        return newContrasenia;
+        return newPassword;
     }
 
     public void setNewPassword(String newPassword) {
-        this.newContrasenia = newPassword;
+        this.newPassword = newPassword;
     }    
 
     public String getNombre() {
@@ -97,7 +97,7 @@ public class EditUser {
 	public String toString() {
 		return "EditUser [nombre=" + nombre + ", apellidos=" + apellidos + ", estado=" + estado + ", codigo_postal="
 				+ codigo_postal + ", direccion=" + direccion + ", telefono=" + telefono + ", currentContrasenia="
-				+ currentContrasenia + ", newContrasenia=" + newContrasenia + "]";
+				+ currentPassword + ", newContrasenia=" + newPassword + "]";
 	}
 
 	

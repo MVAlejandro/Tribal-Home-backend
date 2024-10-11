@@ -1,36 +1,49 @@
 package org.tribalHome.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
 
-    private static int totalUsuarios = 0; // Contador estático para autoincrementar el ID
-
-    private int id; // Este será el ID que se autoincrementa
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario", nullable = false, unique = true)
+    private Integer id_usuario; // Este será el ID que se autoincrementa
+	@Column(nullable = false)
     private String nombre;
+	@Column(nullable = false)
     private String apellidos;
-    private String estado;
+	@Column(nullable = false)
+    private String estados;
+	@Column(nullable = false)
     private String codigo_postal;
+	@Column(nullable = false)
     private String direccion;
+	@Column(nullable = false)
     private String telefono;
+	@Column(nullable = false, unique = true)
     private String correo;
+	@Column(nullable = false)
     private String contrasenia;
-    private Rol rol;
-
-    public enum Rol {
-        ADMIN, USUARIO, INVITADO
-    }
+	@Column(nullable = false)
+    private String rol;
 
     // Constructor vacío
     public Usuario() {
-        this.id = ++totalUsuarios; // Cada nuevo usuario tendrá un ID único e incremental
     }
 
     // Constructor con parámetros (sin incluir id, porque se asigna automáticamente)
     public Usuario(String nombre, String apellidos, String estado, String codigo_postal,
-                   String direccion, String telefono, String correo, String contrasenia, Rol rol) {
-        this(); // Llama al constructor vacío para asignar el ID autoincrementable     
+                   String direccion, String telefono, String correo, String contrasenia, String rol) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.estado = estado;
+        this.estados = estado;
         this.codigo_postal = codigo_postal;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -41,8 +54,8 @@ public class Usuario {
 
     // Getters y Setters
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        return id_usuario;
     }
 
     // No se provee un setter para id porque queremos que se autoincremente
@@ -64,11 +77,11 @@ public class Usuario {
     }
 
     public String getEstado() {
-        return estado;
+        return estados;
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        this.estados = estado;
     }
 
     public String getCodigo_postal() {
@@ -111,18 +124,18 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos +
-               ", estado=" + estado + ", codigo_postal=" + codigo_postal + ", direccion=" + direccion + 
+        return "Usuario [id=" + id_usuario + ", nombre=" + nombre + ", apellidos=" + apellidos +
+               ", estado=" + estados + ", codigo_postal=" + codigo_postal + ", direccion=" + direccion + 
                ", telefono=" + telefono + ", correo=" + correo + ", contrasenia=" + contrasenia + ", rol=" + rol + "]";
     }
 }
