@@ -9,12 +9,16 @@ import org.tribalHome.dto.Login;
 import org.tribalHome.model.Usuario;
 //import org.tribalHome.model.Usuario.Rol;
 import org.tribalHome.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    @Autowired
+	private PasswordEncoder encoder;
     
     public UsuarioService(UsuarioRepository usuarioRepository) {
     	this.usuarioRepository = usuarioRepository;
@@ -33,6 +37,7 @@ public class UsuarioService {
     public Usuario addUsuario(Usuario usuario) {
     	Optional<Usuario> user = usuarioRepository.findByCorreo(usuario.getCorreo()); // Vemos si el correo ya ha sido registrado
     	if(user.isEmpty()) {
+    		usuario.setContrasenia(encoder.encode(usuario.getContrasenia()));
     		return usuarioRepository.save(usuario); // Devolver el usuario añadido
     	}else {
     		System.out.println("El el correo ["+ usuario.getCorreo() +"] ya se encuentra registrado");
@@ -87,8 +92,8 @@ public class UsuarioService {
         if (usuarioRepository.existsById(usuarioId)) {
         	usuario = usuarioRepository.findById(usuarioId).get();
             // Verificamos si la contraseña actual coincide
-            if (usuario.getContrasenia().equals(editUser.getCurrentPassword())) {
-                if(editUser.getNewPassword() != null)usuario.setContrasenia(editUser.getNewPassword()); // Actualizamos la contraseña
+            if(encoder.matches(editUser.getCurrentPassword(), usuario.getContrasenia())){
+                if(editUser.getNewPassword() != null)usuario.setContrasenia(encoder.encode(editUser.getNewPassword())); // Actualizamos la contraseña
                 if(editUser.getNombre() != null) usuario.setNombre(editUser.getNombre());
                 if(editUser.getApellidos() != null) usuario.setApellidos(editUser.getApellidos());
                 if(editUser.getCodigo_postal() != null) usuario.setCodigo_postal(editUser.getCodigo_postal());
@@ -107,7 +112,7 @@ public class UsuarioService {
 	public Usuario loginUser(Login usuario) {
 		Optional<Usuario> user = usuarioRepository.findByCorreo(usuario.getCorreo()); // Vemos si el correo ya ha sido registrado
     	if(!user.isEmpty()) {
-    		if (user.get().getContrasenia().equals(usuario.getContrasenia())) {
+    		if(encoder.matches(usuario.getContrasenia(), user.get().getContrasenia())){
     			return user.get();
     		} else {
     			System.out.println("Las contraseñas no coinciden.");
