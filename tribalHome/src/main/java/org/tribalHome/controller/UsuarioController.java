@@ -3,8 +3,6 @@ package org.tribalHome.controller;
 import java.util.List;
 
 import org.tribalHome.dto.EditUser;
-import org.tribalHome.dto.Login;
-//import org.tribalHome.dto.EditUser;
 import org.tribalHome.model.Usuario;
 import org.tribalHome.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/usuarios/") // http://localhost:8080/api/usuarios/
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -45,32 +44,18 @@ public class UsuarioController {
         return usuarioService.deleteUsuario(usuarioId);
     }
 
-//    // Actualizar la información de un usuario
-//    @PutMapping(path = "{usuarioId}")
-//    public Usuario updateUsuario(@RequestBody Usuario usuario,
-//                                 @PathVariable("usuarioId") int usuarioId) {  // Cambiado a int
-//        return usuarioService.updateUsuario(usuarioId, usuario);
-//    }
-//
-//    // Cambiar la contraseña del usuario
-//    @PutMapping(path = "{usuarioId}/change-password")
-//    public Usuario changePassword(@PathVariable("usuarioId") int usuarioId,  // Cambiado a int
-//                                  @RequestBody EditPassword editPassword) {
-//        return usuarioService.changePassword(usuarioId, editPassword);
-//    }
+    // Busca un usuario por correo y devuelve true o false
+    @GetMapping(path = "/validar-registro")
+    public Boolean existCorreo(@RequestParam(required = false) String correo) {
+    	return usuarioService.validarRegistro(correo);
+    }
     
-//     Prueba pendiente 
-    
-    // Cambiar la contraseña del usuario
+    // Cambiar los datos del usuario
     @PutMapping(path = "{usuarioId}/edit-usuario")
     public Usuario editUser(@PathVariable("usuarioId") Integer usuarioId,  // Cambiado a int
                                   @RequestBody EditUser editUser) {
         return usuarioService.editUser(usuarioId, editUser);
     }
     
-    // Obtener un usuario por sus datos de registro
-    @GetMapping(path = "/login")
-    public Usuario loginUser(@RequestBody Login login) {
-    	return usuarioService.loginUser(login);
-    }
 }
+

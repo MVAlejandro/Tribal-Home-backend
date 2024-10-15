@@ -5,9 +5,7 @@ import java.util.Optional;
 
 //import org.tribalHome.dto.EditPassword;
 import org.tribalHome.dto.EditUser;
-import org.tribalHome.dto.Login;
 import org.tribalHome.model.Usuario;
-//import org.tribalHome.model.Usuario.Rol;
 import org.tribalHome.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,39 +51,8 @@ public class UsuarioService {
             usuarioRepository.delete(usuario); // Eliminamos el usuario de la DB
         }
         return usuario; // Devolvemos el usuario eliminado (o null si no existía)
-    }
-
-////     Método para actualizar un usuario
-//    public Usuario updateUsuario(int usuarioId, Usuario usuarioActualizado) {  // Cambiado a int
-//        Usuario usuario = getUsuario(usuarioId); // Buscamos al usuario por ID
-//        if (usuario != null) {
-//            // Actualizamos los datos del usuario
-//        	if(usuarioActualizado.getNombre() != null) usuario.setNombre(usuarioActualizado.getNombre());
-//        	if(usuarioActualizado.getApellidos() != null) usuario.setApellidos(usuarioActualizado.getApellidos());
-//        	if(usuarioActualizado.getDireccion() != null) usuario.setDireccion(usuarioActualizado.getDireccion());
-//        	if(usuarioActualizado.getEstado() != null) usuario.setEstado(usuarioActualizado.getEstado());
-//        	if(usuarioActualizado.getCodigo_postal() != null) usuario.setCodigo_postal(usuarioActualizado.getCodigo_postal());
-//        	if(usuarioActualizado.getTelefono() != null) usuario.setTelefono(usuarioActualizado.getTelefono());
-//        }
-//        return usuario; // Devolvemos el usuario actualizado (o null si no existía)
-//    }
-
-//    // Método para cambiar la contraseña
-//    public Usuario changePassword(int usuarioId, EditPassword editPassword) {  // Cambiado a int
-//        Usuario usuario = getUsuario(usuarioId); // Buscamos al usuario por ID
-//        if (usuario != null) {
-//            // Verificamos si la contraseña actual coincide
-//            if (usuario.getContrasenia().equals(editPassword.getCurrentPassword())) {
-//                usuario.setContrasenia(editPassword.getNewPassword()); // Actualizamos la contraseña
-//                return usuario; // Devolvemos el usuario actualizado
-//            } else {
-//                throw new IllegalArgumentException("La contraseña actual no es correcta.");
-//            }
-//        }
-//        throw new IllegalArgumentException("Usuario no encontrado.");
-//    }
-//    
-    // Prueba pendiente
+    }  
+    
     // 	Método para editar a un usuario
 	public Usuario editUser(Integer usuarioId, EditUser editUser) {
 		Usuario usuario = null; // Buscamos al usuario por ID
@@ -109,7 +76,7 @@ public class UsuarioService {
 	}
 	
 	// Método para iniciar sesión
-	public Usuario loginUser(Login usuario) {
+	public Usuario loginUser(Usuario usuario) {
 		Optional<Usuario> user = usuarioRepository.findByCorreo(usuario.getCorreo()); // Vemos si el correo ya ha sido registrado
     	if(!user.isEmpty()) {
     		if(encoder.matches(usuario.getContrasenia(), user.get().getContrasenia())){
@@ -123,4 +90,13 @@ public class UsuarioService {
     	}  
 	}
 	
+	// Método para validar registro, devuelve verdadero o falso si el correo ya se encuentra en uso
+	public Boolean validarRegistro(String correo) {
+		Optional<Usuario> user = usuarioRepository.findByCorreo(correo); // Vemos si el correo ya ha sido registrado
+    	if(user.isEmpty()) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+	}
 }
