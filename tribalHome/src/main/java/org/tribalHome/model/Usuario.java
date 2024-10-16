@@ -1,10 +1,16 @@
 package org.tribalHome.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,17 +39,20 @@ public class Usuario {
     private String contrasenia;
 	@Column(nullable = false)
     private String rol;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
+	List<Carrito> carritos =  new ArrayList<Carrito>();
 
     // Constructor vacío
     public Usuario() {
     }
 
     // Constructor con parámetros (sin incluir id, porque se asigna automáticamente)
-    public Usuario(String nombre, String apellidos, String estado, String codigo_postal,
+    public Usuario(String nombre, String apellidos, String estados, String codigo_postal,
                    String direccion, String telefono, String correo, String contrasenia, String rol) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.estados = estado;
+        this.estados = estados;
         this.codigo_postal = codigo_postal;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -131,7 +140,11 @@ public class Usuario {
     public void setRol(String rol) {
         this.rol = rol;
     }
-
+    
+    public List<Carrito> getCarritos(){
+    	return carritos;
+    }
+    
     @Override
     public String toString() {
         return "Usuario [id=" + id_usuario + ", nombre=" + nombre + ", apellidos=" + apellidos +

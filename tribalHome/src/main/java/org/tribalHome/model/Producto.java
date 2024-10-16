@@ -1,10 +1,16 @@
 package org.tribalHome.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +33,9 @@ public class Producto {
     private String imagen;
 	@Column(nullable = false)
     private Integer stock;
-
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "producto_id_producto", referencedColumnName = "id_producto")
+	List<Carrito> carritos =  new ArrayList<Carrito>();
     // Constructor vacío
     public Producto() {
     }
@@ -97,5 +105,8 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+    public List<Carrito> getCarritos(){
+    	return carritos;
     }
 }

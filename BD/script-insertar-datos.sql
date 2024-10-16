@@ -12,7 +12,7 @@ INSERT INTO usuario VALUES (null, 'Jose Alberto', 'Rivera Lara', 'México', '552
 	(null, 'Juan Carlos', 'Valencia', 'Ciudad de México', '5555', 'Av Generation México', '5500000000', 'elbuenJC@gmail.com', 'Parangaricutirimicuaro1+', 'cliente');
 -- INSERTS a la tabla producto
 -- INSERTS a la tabla producto
-INSERT INTO producto VALUES (null, 'Enfriador de vino', 'Elegante enfriador de mármol ideal para mantener la temperatura de tu botella de vino.', 450.00, 'Decoración', './assets/muebles/deco-1.png', 40),
+INSERT INTO producto (id_producto, nombre_producto, descripcion, precio, categoria, imagen, stock) VALUES (null, 'Enfriador de vino', 'Elegante enfriador de mármol ideal para mantener la temperatura de tu botella de vino.', 450.00, 'Decoración', './assets/muebles/deco-1.png', 40),
     (null, 'Enfriador de vino', 'Elegante enfriador de mármol ideal para mantener la temperatura de tu botella de vino.', 450.00, 'Decoración', './assets/muebles/deco-2.png', 1000),
     (null, 'Jarrón cerámica', 'Jarrón pequeño en cerámica de gres esmaltada. Modelo con diseño irregular.', 500.00, 'Decoración', './assets/muebles/deco-3.png', 1000),
     (null, 'Jarrón cerámica', 'Jarrón pequeño en cerámica de gres esmaltada. Modelo con diseño irregular.', 500.00, 'Decoración', './assets/muebles/deco-4.png', 1000),
