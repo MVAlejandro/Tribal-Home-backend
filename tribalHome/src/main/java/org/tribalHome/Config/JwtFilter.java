@@ -25,7 +25,7 @@ public class JwtFilter extends GenericFilterBean {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request; 
 		String authHeader = httpServletRequest.getHeader("Authorization");
 		if ((("POST".equals(httpServletRequest.getMethod())) && (! httpServletRequest.getRequestURI().contains("/api/usuarios/registro"))) ||  
-				(("GET".equals(httpServletRequest.getMethod())) && 	(! httpServletRequest.getRequestURI().contains("/api/productos/"))) ||
+				(("GET".equals(httpServletRequest.getMethod())) && 	(! httpServletRequest.getRequestURI().contains("/api/productos/") && ! httpServletRequest.getRequestURI().contains("/api/usuarios/validar-registro"))) ||
 				("PUT".equals(httpServletRequest.getMethod())) || ("DELETE".equals(httpServletRequest.getMethod()))) {
 			
 			if(authHeader == null || !authHeader.startsWith("Bearer: ")) {
