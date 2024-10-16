@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping(path = "/api/login/")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class LoginController {
 	private final UsuarioService usuarioService;
 	
