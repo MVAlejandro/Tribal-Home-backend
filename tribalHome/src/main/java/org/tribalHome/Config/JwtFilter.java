@@ -39,7 +39,7 @@ public class JwtFilter extends GenericFilterBean {
 				String role = claims.get("role", String.class);
 				if(!"admin".equals(role) &&	(
 						(("GET".equals(httpServletRequest.getMethod())) && (httpServletRequest.getRequestURI().contains("/api/usuarios/"))) ||
-						(("POST".equals(httpServletRequest.getMethod())) && (httpServletRequest.getRequestURI().contains("/api/productos/"))) ||
+						(("POST".equals(httpServletRequest.getMethod())) && (httpServletRequest.getRequestURI().contains("/api/productos/") && ! httpServletRequest.getRequestURI().contains("/api/usuarios/validar-cambio/"))) ||
 						(("PUT".equals(httpServletRequest.getMethod())) && (httpServletRequest.getRequestURI().contains("/api/productos/"))) ||
 						(("DELETE".equals(httpServletRequest.getMethod())) && (httpServletRequest.getRequestURI().contains("/api/usuarios/") || httpServletRequest.getRequestURI().contains("/api/productos/"))))) {
 					System.out.println("2. Invalid Token");

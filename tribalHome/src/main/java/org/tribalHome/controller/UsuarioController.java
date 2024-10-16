@@ -50,6 +50,13 @@ public class UsuarioController {
     	return usuarioService.validarRegistro(correo);
     }
     
+    // Busca un usuario y comprueba que la contraseña coincida
+    @PostMapping(path = "/validar-cambio/{usuarioId}")
+    public Boolean sameContrasenia(@PathVariable("usuarioId") Integer usuarioId,
+    		@RequestBody EditUser editUser) {
+    	return usuarioService.validarCambio(usuarioId, editUser);
+    }
+    
     // Cambiar los datos del usuario
     @PutMapping(path = "{usuarioId}/edit-usuario")
     public Usuario editUser(@PathVariable("usuarioId") Integer usuarioId,  // Cambiado a int

@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,15 +35,15 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public LoginResponse loginUser(@RequestBody Usuario usuario) throws ServletException {
+	public ResponseEntity<LoginResponse>  loginUser(@RequestBody Usuario usuario) throws ServletException {
 		Usuario user = usuarioService.loginUser(usuario);
 		if(user != null) {
 			System.out.println("Usuario válido " +  usuario.getCorreo());
 			Token token = new Token(generateToken(usuario.getCorreo(), user.getRol()));
 			// Devolvemos el token y el usuario
-			return new LoginResponse(token, user);
+			return ResponseEntity.ok(new LoginResponse(token, user));
 		}
-		throw new ServletException("Nombre de usuario o contraseña incorrectos [" + usuario.getCorreo() + "]");
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 	}
 
 	private String generateToken(String email, String rol) {

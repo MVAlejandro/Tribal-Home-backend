@@ -99,4 +99,15 @@ public class UsuarioService {
     		return false;
     	}
 	}
+	
+	public Boolean validarCambio(Integer id, EditUser editUser) {
+		Optional<Usuario> user = usuarioRepository.findById(id); // Vemos si el usuario existe
+		if(!user.isEmpty()) {
+			if(encoder.matches(editUser.getCurrentPassword(), user.get().getContrasenia())){
+				return true;
+			}	
+    	}
+		return false;
+
+	}
 }
